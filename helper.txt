@@ -1,0 +1,93 @@
+-----
+cmder
+setting > startup > specified named task > use bash::bash
+
+язык
+
+setting > startup > environment > ввести
+
+set LC_ALL=ru_RU.UTF-8
+set LANG=ru_RU.UTF-8
+
+
+----git
+git config --global user.name "Secret"
+git config --global user.email "toontown@inbox.ru"
+git config --list
+
+git init
+
+ls -1 a /показать все файлы, в том числе скрытые/
+git diff /посмотреть изменения/
+git log /посмотреть коммиты закрыть q/
+git show <коммит>
+mkdir /создание папки/
+
+-------
+ssh ключи
+
+ssh-keygen -t rsa -b 4096 -C "toontown@inbox.ru"
+
+ssh -T -i ~/.ssh/git2210 git@github.com
+
+vim ~/.ssh/config
+Host github.com
+	IdentityFile ~/.ssh/git2210
+
+
+-----------
+
+npm i npm
+npm init
+
+---
+sass
+
+npm install -g sass
+
+---
+grunt
+
+npm install -g grunt-cli
+npm i grunt-contrib-sass /!/
+
+module.exports = function(grunt) {
+	grunt.loadNpmTasks("grunt-contrib-sass");
+
+	grunt.initConfig({
+		sass: {
+			style: {
+				files: {
+					'css/main.css': 'sass/main.scss'
+				}
+			}
+		}
+	});
+};
+
+
+npm install --save-dev node-sass grunt-sass
+
+
+---
+gulp
+
+npm install gulp-cli -g
+npm install node-sass gulp-sass --save-dev
+
+
+var gulp = require("gulp");
+var sass = require("gulp-sass");
+ 
+gulp.task("sass", function () {
+	gulp.src("sass/main.scss")
+	.pipe(sass())
+	.pipe(gulp.dest("css"));
+});
+
+
+
+\\видеть изменения в браузере без обновлений страницы
+
+npm install -g browser-sync
+browser-sync start --server --files "php/*.php,css/*.css,js/*.js,html/*.html,*.*"
