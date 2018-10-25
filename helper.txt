@@ -14,7 +14,7 @@ set LANG=ru_RU.UTF-8
 git config --global user.name "Secret"
 git config --global user.email "toontown@inbox.ru"
 git config --list
-
+git rm -r --cached /название папки/ удалить из отслеживаемых файлов
 git init
 
 ls -1 a /показать все файлы, в том числе скрытые/
@@ -73,6 +73,7 @@ npm install --save-dev node-sass grunt-sass
 gulp
 
 npm install gulp-cli -g
+npm i gulp-sass
 npm install node-sass gulp-sass --save-dev
 
 
