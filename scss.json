@@ -1,17 +1,64 @@
 {
-	"indents": {
-			"prefix": "inc",
+	/*
+		// Place your snippets for SCSS here. Each snippet is defined under a snippet name and has a prefix, body and 
+		// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+		// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+		// same ids are connected.
+		// Example:
+		"Print to console": {
+			"prefix": "log",
+			"body": [
+				"console.log('$1');",
+				"$2"
+			],
+			"description": "Log output to console"
+		}
+	*/
+	
+		"include": {
+			"prefix": "ind",
 			"body": [
 				"@include indents",
 			],
-			"description": "indents"
+			"description": "include"
 		},
-
+	
 		"font": {
 			"prefix": "font",
 			"body": [
-				"@include font()",
+				"@include font",
 			],
-			"description": "indents"
+			"description": "font"
 		},
-}
+	
+		"flex": {
+			"prefix": "flex",
+			"body": [
+				"display: flex;",
+				"flex-direction: row;",
+				"flex-wrap: wrap;",
+				"justify-content: space-between;",
+			],
+			"description": "font"
+		},
+	
+		"absolute": {
+			"prefix": "abs",
+			"body": [
+				"position: absolute;",
+				"top: 0;",
+				"left: 0;",
+			],
+			"description": "font"
+		},
+	
+		"list": {
+			"prefix": "lst",
+			"body": [
+				"@include indents;",
+				"list-style: none;",
+			],
+			"description": "font"
+		},
+	}
+	
