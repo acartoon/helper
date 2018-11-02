@@ -1,0 +1,17 @@
+{
+	"indents": {
+			"prefix": "inc",
+			"body": [
+				"@include indents",
+			],
+			"description": "indents"
+		},
+
+		"font": {
+			"prefix": "font",
+			"body": [
+				"@include font()",
+			],
+			"description": "indents"
+		},
+}

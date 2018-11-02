@@ -73,6 +73,7 @@ npm install --save-dev node-sass grunt-sass
 gulp
 
 npm install gulp-cli -g
+npm install gulp
 npm install node-sass gulp-sass --save-dev
 
 

@@ -1,0 +1,39 @@
+{
+	"template_html": {
+		"prefix": "temp",
+		"body": [
+			"<!DOCTYPE HTML>",
+			"<head>",
+			"<meta charset=\"utf-8\">",
+				"<html lang=\"ru\">",
+				"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+				"<link href=\"css/main.css\" rel=\"stylesheet\" type=\"text/css\">",
+			
+			
+			"</head>",
+			
+			"<body class=\"main\">",
+				"<header class=\"main-header\">",
+					"<nav class=\"main-nav\">",
+						"<button class=\"main-nav__trigger\" title=\"Главное меню\">",
+							"<span class=\"main-nav__trigger-line\"></span>",
+						"</button>",
+						"<div class=\"main-nav__list--wrapper\">",
+							"<ul class=\"main-nav__list\">",
+								"<li class=\"main-nav__item\">",
+									"<a class=\"main-nav__link\" href=\"#work\">Home</a>",
+								"</li>",
+							"</ul>",
+						"</div>",
+					"</nav>",
+				"</header>",
+				"<main>",
+				"</main>",
+			
+			"</body>",
+			
+			"</html>",
+		],
+			"description": "шаблон начальной страницы"
+	},
+}
