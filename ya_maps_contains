@@ -1,0 +1,47 @@
+ymaps.ready(init);
+
+function init() {
+        var myMap = new ymaps.Map("map", {
+            center: [55.73, 37.75],
+            zoom: 9
+        }, {
+            searchControlProvider: 'yandex#search'
+        });
+    
+    function _onPolygonLoad(json) {
+        
+    //console.log(json.coordinates)
+    
+    
+    var myPolygon = new ymaps.Polygon(json.coordinates);
+    myPolygon.options.set('visible', false);
+    //myPoint = new ymaps.Placemark([55.66696294756008,37.53832224804689]);
+   myPoint = new ymaps.Placemark([55.66949338735353,37.42386752817147]);
+    // Создаем кратчайшую нормаль от контура полигона до точки.
+    
+        myMap.geoObjects
+        .add(myPolygon)
+        .add(myPoint)
+
+    //  var normalVec = new ymaps.Polyline([
+    //         myPolygon.geometry.getClosest(myPoint.geometry.getCoordinates()).position,
+    //         myPoint.geometry.getCoordinates()
+    //     ]);
+    
+    myPolygon.geometry.setFillRule('nonZero');
+    var distanse = console.log(myPolygon.geometry.getClosest(myPoint.geometry.getCoordinates()));
+    var isСontains = myPolygon.geometry.contains(myPoint.geometry.getCoordinates())
+    
+    console.log(isСontains)
+    // myMap.geoObjects
+    //     .add(normalVec);
+    }
+    
+    
+    
+        $.ajax({
+        url: 'moscow.json',
+        dataType: 'json',
+        success: _onPolygonLoad
+    });
+}
