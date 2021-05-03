@@ -1,0 +1,6 @@
+mixin accordion(params)
+    .accordion(data-accordion-group=params.group class=(params.active ? 'active' : ''))
+        ._head(data-target="accordion" data-accordion-type=params.type)=params.title
+        ._body
+            block
+

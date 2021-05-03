@@ -1,0 +1,619 @@
+
+@font-face {
+    font-weight: 400;
+    font-family: "Helvetica Neue";
+    font-style: normal;
+    src: url("../fonts/helveticaneuecyr-roman-webfont.woff") format("woff");
+}
+
+@font-face {
+    //font-weight: 700;
+    font-family: "Helvetica Neue Bold";
+    font-style: normal;
+    src: url("../fonts/_helveticaneuecyr-bold-webfont.woff") format("woff");
+}
+
+@mixin checklist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+.catalog {
+    max-width: 1440px;
+    margin: auto;
+}
+/****************** filter  ****************************/
+
+.arrow {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url("i/bed/arrow.svg");
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.arrow-green {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url("i/bed/arrow-green.svg");
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.fiter-part {
+    //padding: 20px 0;
+    border-bottom: 2px solid #F7F6F2;
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    &__mark {
+        display: none;
+        width: 6px;
+        height: 6px;
+        flex: 0 0 6px;
+        margin: 0 auto 0 0;
+        border-radius: 50%;
+        background: #008B6E;
+
+        .fiter-part.checked & {
+            display: block;
+        }
+    }
+
+    &__body {
+        display: none;
+        padding: 0 16px;
+
+        .fiter-part.active & {
+            display: block;
+        }
+    }
+
+
+    &__head {
+        display: flex;
+        padding: 20px 16px;
+        cursor: pointer;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    &__arrow {
+        transform: rotate(0);
+        transition: transform 150ms ease-in, background-image 150ms ease-in;
+
+        .fiter-part.active & {
+            transform: rotate(180deg);
+            transition: transform 150ms ease-in, background-image 150ms ease-in;
+        }
+
+        .fiter-part__head:hover & {
+            background-image: url("i/bed/arrow-hover.svg");
+            transition: transform 150ms ease-in,  background-image 150ms ease-in;
+        }
+    }
+
+    &__close-text {
+        display: block;
+
+        .fiter-part.active & {
+            display: none;
+        }
+
+    }
+
+    &__title {
+        margin: 0;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        color: #1E1E1E;
+        padding-top: 4px;
+        padding-right: 10px;
+        font-family: 'Helvetica Neue';
+    }
+
+}
+
+.catalog__filter {
+    width: 220px;
+    margin-right: 50px;
+}
+
+.catalog-filter {
+    background: #fff;
+    font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;
+}
+
+.check-list {
+    @include checklist;
+    //min-height: 340px;
+}
+
+.check-block {
+    &__input {
+        display: none;
+    }
+
+    &.disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
+
+    &__color {
+        border-radius: 50%;
+        box-sizing: border-box;
+        width: 12px;
+        height: 12px;
+        flex: 0 0 auto;
+        margin-right: 8px;
+        border: 1px solid #E4E2DA;
+
+        &.black {
+            background: #000;
+            border-color: #000;
+        }
+
+        &.gray {
+            background: #9C9C9C;
+            border-color: #9C9C9C;
+        }
+
+        &.brown {
+            background: #987663;
+            border-color: #987663;
+        }
+
+        &.white {
+            background: #fff;
+        }
+
+        &.blue {
+            background: #4073D6;
+            border-color: #4073D6;
+        }
+    }
+
+    &__label {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 10px 0 8px 30px;
+        cursor: pointer;
+
+        .check-block.disabled & {
+            cursor: default;
+        }
+
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            border: 1px solid #E4E2DA;
+            box-sizing: border-box;
+            border-radius: 2px;
+            transition: background-color ease-in 150ms;
+        }
+
+        &:hover {
+            &:before {
+                background: #F7F6F2;
+                transition: background-color ease-in 150ms;
+            }
+        }
+
+
+        .check-block__input:checked ~ & {
+
+            &:before {
+                background: #008B6E;
+                border-color: #008B6E;
+                background-image: url("i/bed/tick.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+
+            &:hover {
+                &:before {
+                    background-color: #008B6E;
+                    background-image: url("i/bed/tick.svg"), linear-gradient(0deg, #229E84, #229E84);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    transition: background-color ease-in 150ms;
+                }
+            }
+
+        }
+    }
+
+    &__name {
+        margin: 0;
+        font-size: 14px;
+        line-height: 18px;
+        color: #000;
+    }
+
+    &__count {
+        color: #E4E2DA;
+        padding-left: 8px;
+    }
+}
+
+.filter-input {
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #E4E2DA;
+    border-radius: 3px;
+    padding: 7px 12px 5px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #9C9C9C;
+    transition: border-color 150ms ease-in;
+    width: 100%;
+
+    &:hover {
+        border-color: #CDCBC4;
+        transition: border-color 150ms ease-in;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #CDCBC4;
+        transition: border-color 150ms ease-in;
+    }
+}
+
+
+.spoiler {
+    padding-bottom: 20px;
+
+    &__body {
+        max-height: 344px;
+        overflow: hidden;
+
+        &.scroll-scrolly_visible {
+            margin-right: 16px !important;
+        }
+    }
+
+
+    &__search {
+        margin-bottom: 20px;
+
+        .spoiler.disable & {
+            display: none;
+        }
+
+        .spoiler.search & {
+            display: block;
+        }
+    }
+
+    &__active-text {
+
+        .spoiler.show & {
+            display: none;
+        }
+    }
+
+    &__more {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 12px 0 0;
+        cursor: pointer;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        color: #008B6E;
+
+        .spoiler.disable &{
+            display: none;
+        }
+
+
+        p {
+            margin: 0;
+        }
+    }
+
+
+    &__close-text {
+        display: none;
+
+        .spoiler.show & {
+            display: block;
+        }
+    }
+
+    &__arrow-more {
+        transition: transform 150ms ease-in;
+
+        .spoiler.show & {
+            transform: rotate(180deg);
+            transition: transform 150ms ease-in;
+
+        }
+    }
+
+    .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+        width: 6px;
+        background: #9C9C9C;
+        opacity: 0.5;
+        border-radius: 3px;
+    }
+
+    .mCSB_container {
+        margin-right: 22px;
+    }
+
+    .mCSB_scrollTools {
+        width: 6px;
+    }
+
+    .mCSB_scrollTools .mCSB_draggerRail {
+        background: transparent;
+    }
+
+    .scrollbar-inner > .scroll-element .scroll-element_track {
+        background: transparent;
+    }
+
+    .scrollbar-inner > .scroll-element.scroll-y {
+        width: 6px;
+    }
+
+    .scrollbar-inner > .scroll-element .scroll-bar {
+        background: #9C9C9C;
+        opacity: 1;
+    }
+
+    .scroll-bar {
+        max-height: 100px !important;
+        cursor: pointer;
+    }
+
+}
+
+.hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+
+.scrollblock {
+    display: block;
+    width: 150px;
+    height: 150px;
+    background: red;
+
+
+    &__in {
+        width: 100%;
+        //height: 300px;
+    }
+}
+
+.range {
+    padding-bottom: 12px;
+
+    &__range {
+        margin-top: -10px;
+        margin-bottom: 8px;
+    }
+
+    &__inputs {
+        display: flex;
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    &__item {
+        display: flex;
+        width: 50%;
+        margin: 0 5px;
+    }
+
+    input {
+        width: 100%;
+        margin-left: 4px;
+        padding: 0;
+        border: none;
+        font-family: 'Helvetica Neue', Arial, Verdana, sans-serif;
+        font-size: 14px;
+        line-height: 18px;
+        color: #1e1e1e;
+    }
+
+    .irs--round .irs-handle {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        background: #FFFFFF;
+        border: 3px solid #008B6E;
+        border-radius: 50%;
+        box-sizing: border-box;
+        box-shadow: none;
+    }
+
+    .irs--round .irs-line {
+        width: 100%;
+        height: 2px;
+        left: 0px;
+        background: #EDEBE3;
+        border-radius: 2px;
+    }
+
+    .irs--round .irs-bar {
+        width: 148px;
+        height: 2px;
+        background: #008B6E;
+        border-radius: 2px;
+    }
+}
+
+/*dropdown*/
+
+.dropdown {
+    position: relative;
+
+    &__selection {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 7px 10px 5px;
+    }
+
+    &__renderer {
+        margin: 0;
+        font-size: 14px;
+        line-height: 18px;
+        color: #1E1E1E;
+    }
+
+    &__arrow {
+        display: block;
+        width: 9px;
+        height: 20px;
+        background-image: url("i/bed/arrow-hover.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: all 150ms ease-in;
+        background-size: contain;
+
+        .dropdown.open & {
+            transform: rotate(180deg);
+            background-image: url("i/bed/arrow.svg");
+            transition: all 150ms ease-in;
+        }
+    }
+
+    &__dropdown {
+        display: none;
+        background: #fff;
+        z-index: 5;
+        position: absolute;
+        top: calc(100% + 4px);
+        right: 0;
+        left: 0;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
+        border-radius: 0px 0px 3px 3px;
+        max-height: 150px;
+        padding: 10px 0;
+
+        .dropdown.open & {
+            display: block;
+        }
+    }
+
+    &__in {
+        overflow: hidden;
+        max-height: 150px;
+    }
+
+
+    .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+        width: 6px;
+        background: #9C9C9C;
+        opacity: 0.5;
+        border-radius: 3px;
+    }
+
+    .mCSB_container {
+        margin-right: 22px;
+    }
+
+    .mCSB_scrollTools {
+        width: 6px;
+    }
+
+    .mCSB_scrollTools .mCSB_draggerRail {
+        background: transparent;
+    }
+
+    .scrollbar-inner > .scroll-element .scroll-element_track {
+        background: transparent;
+    }
+
+    .scrollbar-inner > .scroll-element.scroll-y {
+        width: 4px;
+        right: 12px;
+    }
+
+    .scrollbar-inner > .scroll-element .scroll-bar {
+        background: #CCCAC3;
+        opacity: 1;
+    }
+
+    .scroll-bar {
+        max-height: 40px !important;
+        cursor: pointer;
+    }
+
+}
+
+.dropdown-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+
+    &__item {
+        display: block;
+        cursor: pointer;
+        padding: 7px 12px 5px 12px;
+        transition: all 150ms ease-in;
+
+        &:hover {
+            background: #F7F6F2;
+            transition: all 150ms ease-in;
+            color: #008B6E;
+        }
+
+
+        p {
+            margin: 0;
+        }
+
+        input {
+            display: none;
+        }
+    }
+}
+
+.dropdown-group {
+    padding-bottom: 20px;
+    display: flex;
+    margin-left: -5px;
+    margin-right: -5px;
+
+    &__item {
+        width: 50%;
+        padding: 0 5px;
+    }
+}
+/****************** end filter  ****************************/

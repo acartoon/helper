@@ -1,0 +1,97 @@
+include data
+mixin range(params)
+    .range(class='js-' + params.evt)
+        ._inputs
+            each val in [{name: 'от', type: 'min', value: params.min}, {name: 'до',  type: 'max', value: params.max}]
+                label._item.filter-input
+                    - var attributes = {};
+                    - attributes['data-value-' + val.type] = val.value;
+                    span=val.name
+                    input(name=`range-${params.evt}` class=`range__input range__input--${val.type}`
+                        value=val.value
+                        placeholder=val.value
+                        readonly)&attributes(attributes)
+        ._range
+            .js-range
+                input.range-slider.slider-js(type='text'  data-min=params.min  data-max=params.max)
+        if(params.checkbox)
+            +checkBlock({disabled: false, id: 'range', name: 'Только со скидкой'}, 0)(class="_checkblox")
+
+
+mixin dropdownList(list, name)
+    .dropdown-list
+        each val in list
+            label._item
+                p=val
+                input(type='radio' name=name value=val)
+
+mixin dropdownBlock(params)
+    .dropdown(data-name=params.name class= params.open ? 'open' : '' data-target="dropdown")
+        ._selection.filter-input
+            input(type="hidden" class='js')
+            p._renderer=params.placeholder
+            i._arrow
+        ._dropdown
+            ._in.scrollbar-inner
+                +dropdownList(params.list, params.name)
+
+
+mixin dropdown(params)
+    .dropdown-group
+        each val in params
+            ._item
+                +dropdownBlock(val)
+
+
+mixin checkBlock(params, index)
+    .check-block(class=params.disabled ? 'disabled': '' )
+        input(disabled=params.disabled name=params.id id=params.id + index type="checkbox" checked=params.checked ? true : false)._input.js-checked
+        label._label(for=params.id + index title=params.name)
+            if(params.color)
+                i._color.color(class=params.color)
+            p._name=params.name
+                if(params.count)
+                    span._count=params.count
+
+
+mixin checklist(list)
+    ul.check-list
+        each val, index in list
+            li._item
+                +checkBlock(val, index)
+
+
+mixin spoiler(params)
+    .spoiler
+        ._search(class=params.search ? 'show' : '')
+            input.filter-input.js-search(placeholder=params.search data-search=params.search)
+        ._body.scrollbar-inner
+            +checklist(params.list)
+        ._more.spoiler__more.js-spoiler-more
+            p._active-text Показать еще 6
+            p._close-text Свернуть
+            i._arrow-more.arrow-green
+
+
+mixin filterItem(params)
+    .fiter-part.js-accordion(data-name=params.id class=params.active ? 'active' : '' class=params.checked ? 'checked': '')
+        ._head.js-accordion-head
+            p._title=params.title
+            p._mark
+            //- подсказка
+            i._arrow.arrow
+        ._body.js-accordion-body
+            block
+
+mixin catalog
+    .catalog
+        ._filter
+            form.catalog-filter
+                each val in filter
+                    +filterItem(val)
+                        if(val.type == 'range')
+                            +range(val)
+                        else if(val.type == 'dropdown')
+                            +dropdown(val.params)
+                        else
+                            +spoiler(val)

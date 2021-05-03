@@ -1,0 +1,26 @@
+
+mixin TabToggle(title)
+    p.tab=title
+
+mixin Tabs(group)
+    .tabs(data-tab-group=group)
+        block
+
+mixin tabNav(params)
+    ul.tabs__tab.nav-tabs
+        each val in params.nav
+            li.nav-tabs__item(class=(val.selected ? 'active' : '')
+                data-selected=val.selected
+                data-target="tab"
+                data-id-content=val.content
+            )
+                +TabToggle(val.title)
+    ul.tabs__content.tab-content(data-tab-group=params.group)
+        block
+
+mixin tabContent(params)
+    li.tab-content__item(class=(params.selected ? 'active' : '')
+        data-selected=params.selected
+        data-content=params.content
+    )
+        block

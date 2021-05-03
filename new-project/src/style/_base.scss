@@ -1,0 +1,41 @@
+/************ базовые стили ***************/
+@import "_";
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $fontOpenSans;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+.overflow-mob {
+    @media (max-width: 1023px) {
+        overflow: hidden;
+    }
+}
+
+.hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    clip: rect(0 0 0 0) !important;
+}
+
+.container {
+    max-width: 1300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 20px;
+    padding-left: 20px;
+
+    @media (min-width: 480px) {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}

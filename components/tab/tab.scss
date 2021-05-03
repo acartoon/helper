@@ -1,0 +1,26 @@
+.tab-content {
+    &__item {
+        position: absolute;
+        z-index: -1;
+        display: block;
+        width: 100%;
+        visibility: hidden;
+
+        &.active {
+            position: static;
+            z-index: 0;
+            display: block;
+            visibility: visible;
+        }
+    }
+}
+
+.nav-tabs {
+    &__item {
+        opacity: 0.6;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+}

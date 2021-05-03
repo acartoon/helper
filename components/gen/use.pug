@@ -1,0 +1,22 @@
+include data
+
+ul.catalog-filter
+    each item in filter
+        li._item
+            +dropdown({type: item.dropdownType, title: item.name, isSelected: item.isSelected, name: item.inputName, isOpen: item.isOpen,
+                attr: {
+                    "data-target": "modal-filter",
+                    "data-id-content": item.inputName,
+                    "data-modal-template": "slim",
+                    "data-event-close": "this",
+                    "data-event-overlay": "all",
+                    "data-animation-type": "right",
+                },
+                bodyAttr: {"data-content": item.inputName}
+            })
+                +selectList({list: item.dropdown,
+                    inputName: item.inputName,
+                    event: item.event,
+                    type: item.inputType,
+                })
+

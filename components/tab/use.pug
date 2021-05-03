@@ -1,0 +1,31 @@
+mixin content1
+    p я контент для таба 1
+    p меня очень очень много в этом списке
+    p меня очень очень много в этом списке
+    p меня очень очень много в этом списке
+    p меня очень очень много в этом списке
+    p меня очень очень много в этом списке
+
+mixin content2
+    p я контент для таба 2
+    p меня очень мало в этом списке
+-
+    var Tabnav = [
+        {title: 'Активные', selected: true, content: 'content1'},
+        {title: 'Выполенные', selected: false, content: 'content2'}
+    ];
+
+
++Tabs('tab-1')
+    +tabNav({
+        nav: Tabnav,
+        group: 'tab-1'
+    })
+        each val, index in ['content1', 'content2']
+            +tabContent({selected: Tabnav[index].selected, content: val})
+                case val
+                    when 'content1'
+                        +content1
+                    when 'content2'
+                        +content2
+

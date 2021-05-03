@@ -1,0 +1,29 @@
+mixin dropdown(params)
+    .dropdown(class=params.isSelected ? 'selected': '' class=params.isOpen ? 'show': '' data-dropdown-type=params.name)
+        ._head&attributes(params.attr)
+            if(params.type == 'select')
+                +_headerSelect(params.title)
+            else
+                +_headerRadio(params.title)
+        ._body&attributes(params.bodyAttr)
+            block
+
+mixin _headerSelect(title)
+    p.dropdown__title=title
+    i.dropdown__counter.js-counter-val
+    i.dropdown__arrow.arrow
+    i.dropdown__clear.close-min.js-clear-counter
+
+mixin _headerRadio(title)
+    p.dropdown__title=title
+    i.dropdown__arrow.arrow
+
+
+mixin selectList(params)
+    .select-list&attributes(params.attr)
+        each val, index in params.list
+            input(class=params.event ? 'js-'+ params.event : '' type=params.type name=params.inputName, id=params.inputName + index)
+            label(for=id=params.inputName + index)._item=val
+
+
+

@@ -1,0 +1,13 @@
+include ../_
+doctype html
+html
+    block var
+    +head(pageTitle)
+    body
+        +pageHeader
+            block header
+        main.page
+            block content
+        +pageFooter
+        .page__modals
+        +scripts
